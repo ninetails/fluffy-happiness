@@ -1,3 +1,6 @@
 {
-  "haskell.serverExecutablePath": "~/.asdf/shims/haskell-language-server-9.8.2"
+  "haskell.serverExecutablePath": "~/.asdf/shims/haskell-language-server-9.8.2",
+  "github.copilot.enable": {
+    "*": false
+  }
 }
