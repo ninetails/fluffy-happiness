@@ -6,10 +6,15 @@ import Data.Semigroup
 import Data.Function ((&))
 import Data.Sequence ((|>))
 
+import Control.Applicative
+
 data Cargo = Estagiario | Programador | Coordenador | Gerente
     deriving Show
 
 data Pessoa = Pessoa { cargo :: Cargo, nome :: String }
+    deriving Show
+
+data Indice a = Indice { indice :: Int, dados :: a }
     deriving Show
 
 verSalario :: Pessoa -> Double
@@ -68,3 +73,6 @@ instance Monoid Projeto where
 instance Semigroup Projeto where
     (Projeto nome1 budget1 env1) <> (Projeto nome2 budget2 env2) =
         Projeto (nome1 ++ ", " ++ nome2) (budget1 + budget2) (env1 ++ env2)
+
+instance Functor Indice where
+    fmap f (Indice i dados) = Indice i (f dados)
