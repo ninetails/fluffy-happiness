@@ -37,6 +37,17 @@ indexOf :: Char -> Alphabet -> Int
 indexOf _ [] = undefined
 indexOf ch (x : xs) = if x == ch then 0 else 1 + indexOf ch xs
 
+plusOneMaybe :: Maybe Int -> Maybe Int
+plusOneMaybe Nothing = Nothing
+plusOneMaybe (Just v) = Just (v + 1)
+
+maybeIndexOf :: Char -> [Char] -> Maybe Int
+maybeIndexOf _ [] = Nothing
+maybeIndexOf ch (x : xs) =
+    if x == ch
+        then Just 0
+        else plusOneMaybe (maybeIndexOf ch xs)
+
 -- Exercise: Writting the (!!) function using pattern matching
 elemAt :: [a] -> Int -> a
 elemAt [] _ = undefined
